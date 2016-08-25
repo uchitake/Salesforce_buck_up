@@ -12,15 +12,17 @@ private class  SalesAnalyticsControllerTest {
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
-            CloseDate=system.today()
+            CloseDate=system.today(),
+            branch__c='a1Gp000000021bmEAA',
+            Projects_name__c='a1Hp00000002Rn7EAE'
         );
         insert opportunity;
         
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', isActive = true);
-        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c='a1Gp000000021bmEAA', isActive = true);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c='a1Gp000000021brEAA', isActive = true);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c='a1Gp000000021bmEAA', isActive = true);
+        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c='a1Gp000000021brEAA', isActive = true);
         insert productA;
         insert productB;
         insert productC;
@@ -123,15 +125,17 @@ private class  SalesAnalyticsControllerTest {
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
-            CloseDate=system.today()
+            CloseDate=system.today(),
+            branch__c='a1Gp000000021bmEAA',
+            Projects_name__c='a1Hp00000002Rn7EAE'
         );
         insert opportunity;
         
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', isActive = true);
-        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c='a1Gp000000021brEAA', isActive = true);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c='a1Gp000000021bmEAA', isActive = true);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c='a1Gp000000021bmEAA', isActive = true);
+        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c='a1Gp000000021brEAA', isActive = true);
         insert productA;
         insert productB;
         insert productC;
@@ -230,15 +234,17 @@ private class  SalesAnalyticsControllerTest {
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
-            CloseDate=system.today()
+            CloseDate=system.today(),
+            branch__c='a1Gp000000021bmEAA',
+            Projects_name__c='a1Hp00000002Rn7EAE'
         );
         insert opportunity;
         
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', isActive = true);
-        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c='a1Gp000000021bmEAA', isActive = true);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c='a1Gp000000021bmEAA', isActive = true);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c='a1Gp000000021brEAA', isActive = true);
+        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c='a1Gp000000021brEAA', isActive = true);
         insert productA;
         insert productB;
         insert productC;
@@ -341,14 +347,16 @@ private class  SalesAnalyticsControllerTest {
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
-            CloseDate=system.today()
+            CloseDate=system.today(),
+            branch__c='a1Gp000000021bmEAA',
+            Projects_name__c='a1Hp00000002Rn7EAE'
         );
         insert opportunity;
 
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c='a1Gp000000021brEAA', isActive = true);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c='a1Gp000000021bmEAA', isActive = true);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c='a1Gp000000021brEAA', isActive = true);
         insert productA;
         insert productB;
         insert productC;
