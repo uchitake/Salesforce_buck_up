@@ -390,6 +390,7 @@ private class  SalesAnalyticsControllerTest {
         //部門データ登録
         division__c division = new division__c(Name='部門Ａ');
         insert division;
+        
         // 商談データ登録
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
