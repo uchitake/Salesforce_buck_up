@@ -8,21 +8,33 @@ private class  SalesAnalyticsControllerTest {
         // ---------テストスタート--------------
         Test.startTest();   
         
+        //取引先データ登録
+		Account account = new Account(Name='取引先Ａ');
+        insert account;
+        
+        //案件データ登録
+		Projects__c projects = new Projects__c(Name='案件Ａ', Suppliers__c=account.Id);
+        insert projects;
+        
+        //部門データ登録
+        division__c division = new division__c(Name='部門Ａ');
+        insert division;
+        
         // 商談データ登録
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
             CloseDate=system.today(),
-            branch__c='a1Gp000000021bmEAA',
-            Projects_name__c='a1Hp00000002Rn7EAE'
+            branch__c=division.Id,
+            Projects_name__c=projects.Id
         );
         insert opportunity;
         
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c='a1Gp000000021bmEAA', isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c='a1Gp000000021brEAA', isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c='a1Gp000000021bmEAA', isActive = true);
-        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c='a1Gp000000021brEAA', isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c=division.Id, isActive = true);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c=division.Id, isActive = true);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c=division.Id, isActive = true);
+        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c=division.Id, isActive = true);
         insert productA;
         insert productB;
         insert productC;
@@ -121,21 +133,33 @@ private class  SalesAnalyticsControllerTest {
         // ---------テストスタート--------------
         Test.startTest();   
         
+        //取引先データ登録
+		Account account = new Account(Name='取引先Ａ');
+        insert account;
+        
+        //案件データ登録
+		Projects__c projects = new Projects__c(Name='案件Ａ', Suppliers__c=account.Id);
+        insert projects;
+        
+        //部門データ登録
+        division__c division = new division__c(Name='部門Ａ');
+        insert division;
+        
         // 商談データ登録
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
             CloseDate=system.today(),
-            branch__c='a1Gp000000021bmEAA',
-            Projects_name__c='a1Hp00000002Rn7EAE'
+            branch__c=division.Id,
+            Projects_name__c=projects.Id
         );
         insert opportunity;
         
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c='a1Gp000000021brEAA', isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c='a1Gp000000021bmEAA', isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c='a1Gp000000021bmEAA', isActive = true);
-        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c='a1Gp000000021brEAA', isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c=division.Id, isActive = true);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c=division.Id, isActive = true);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c=division.Id, isActive = true);
+        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c=division.Id, isActive = true);
         insert productA;
         insert productB;
         insert productC;
@@ -230,21 +254,33 @@ private class  SalesAnalyticsControllerTest {
         // ---------テストスタート--------------
         Test.startTest();   
         
+        //取引先データ登録
+		Account account = new Account(Name='取引先Ａ');
+        insert account;
+        
+        //案件データ登録
+		Projects__c projects = new Projects__c(Name='案件Ａ', Suppliers__c=account.Id);
+        insert projects;
+        
+        //部門データ登録
+        division__c division = new division__c(Name='部門Ａ');
+        insert division;
+        
         // 商談データ登録
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
             CloseDate=system.today(),
-            branch__c='a1Gp000000021bmEAA',
-            Projects_name__c='a1Hp00000002Rn7EAE'
+            branch__c=division.Id,
+            Projects_name__c=projects.Id
         );
         insert opportunity;
         
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c='a1Gp000000021bmEAA', isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c='a1Gp000000021bmEAA', isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c='a1Gp000000021brEAA', isActive = true);
-        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c='a1Gp000000021brEAA', isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c=division.Id, isActive = true);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c=division.Id, isActive = true);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c=division.Id, isActive = true);
+        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c=division.Id, isActive = true);
         insert productA;
         insert productB;
         insert productC;
@@ -343,20 +379,31 @@ private class  SalesAnalyticsControllerTest {
         // ---------テストスタート--------------
         Test.startTest();   
         
+        //取引先データ登録
+		Account account = new Account(Name='取引先Ａ');
+        insert account;
+        
+        //案件データ登録
+		Projects__c projects = new Projects__c(Name='案件Ａ', Suppliers__c=account.Id);
+        insert projects;
+        
+        //部門データ登録
+        division__c division = new division__c(Name='部門Ａ');
+        insert division;
         // 商談データ登録
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
             CloseDate=system.today(),
-            branch__c='a1Gp000000021bmEAA',
-            Projects_name__c='a1Hp00000002Rn7EAE'
+            branch__c=division.Id,
+            Projects_name__c=projects.Id
         );
         insert opportunity;
 
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c='a1Gp000000021brEAA', isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c='a1Gp000000021bmEAA', isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c='a1Gp000000021brEAA', isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c=division.Id, isActive = true);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c=division.Id, isActive = true);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c=division.Id, isActive = true);
         insert productA;
         insert productB;
         insert productC;
