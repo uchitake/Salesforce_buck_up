@@ -1,5 +1,5 @@
 @isTest
-private class  SalesAnalyticsControllerTest {
+private class SalesAnalyticsControllerTest2 {
 
     // 商談商品の最初のデータがプロパの場合
     static testMethod void viewProperTest () {
@@ -8,33 +8,58 @@ private class  SalesAnalyticsControllerTest {
         // ---------テストスタート--------------
         Test.startTest();   
         
-        //取引先データ登録
-		Account account = new Account(Name='取引先Ａ');
+        // プロファイル取得
+        Profile cpprofile = [Select Id FROM Profile  Limit 1];
+        
+        // ユーザデータ登録
+        User user = new User(
+            LastName='taro',
+            Alias='濱口太郎',
+            Email='t-hamaguchi@test.co.jp',
+            Username='t-hamaguchi@test.co.jp',
+            CommunityNickname='t-hamaguchi',
+            emailencodingkey='UTF-8',
+            Languagelocalekey='en_US',
+            Localesidkey='en_US',
+            timezonesidkey='America/Los_Angeles',
+            Profileid = cpprofile.Id
+            
+        );
+        insert user;
+        
+        // 部門データ登録
+        Branch__c branch = new Branch__c(
+            Name='テスト部門',
+            manager__c=UserInfo.getUserId()
+        );
+        insert branch;
+        
+        // 取引先作成
+        Account account = new Account(Name='取引先名');
         insert account;
-        
-        //案件データ登録
-		Projects__c projects = new Projects__c(Name='案件Ａ', Suppliers__c=account.Id);
-        insert projects;
-        
-        //部門データ登録
-        division__c division = new division__c(Name='部門Ａ');
-        insert division;
+
+        //案件作成
+        Projects__c project = new Projects__c(
+            Name='案件名',
+            Suppliers__c=account.Id
+        );
+        insert project;
         
         // 商談データ登録
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
             CloseDate=system.today(),
-            branch__c=division.Id,
-            Projects_name__c=projects.Id
+            branch__c=branch.Id,
+            Projects_name__c=project.Id
         );
         insert opportunity;
         
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c=division.Id, isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c=division.Id, isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c=division.Id, isActive = true);
-        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c=division.Id, isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', isActive = true, branch__c = branch.Id);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', isActive = true, branch__c = branch.Id);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', isActive = true, branch__c = branch.Id);
+        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', isActive = true, branch__c = branch.Id);
         insert productA;
         insert productB;
         insert productC;
@@ -68,9 +93,9 @@ private class  SalesAnalyticsControllerTest {
         insert opportunityLineItemG;
 
         // 売上分析データ登録
-        PredictedValue__c salesPerformanceA = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-07-01'));
-        PredictedValue__c salesPerformanceB = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-08-01'));
-        PredictedValue__c salesPerformanceC = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-09-01'));
+        PredictedValue__c salesPerformanceA = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-07-01'), branch_ref__c = branch.Id);
+        PredictedValue__c salesPerformanceB = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-08-01'), branch_ref__c = branch.Id);
+        PredictedValue__c salesPerformanceC = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-09-01'), branch_ref__c = branch.Id);
         insert salesPerformanceA;
         insert salesPerformanceB;
         insert salesPerformanceC;
@@ -133,33 +158,59 @@ private class  SalesAnalyticsControllerTest {
         // ---------テストスタート--------------
         Test.startTest();   
         
-        //取引先データ登録
-		Account account = new Account(Name='取引先Ａ');
+        // プロファイル取得
+        Profile cpprofile = [Select Id FROM Profile  Limit 1];
+        
+        // ユーザデータ登録
+        User user = new User(
+            LastName='taro',
+            Alias='濱口太郎',
+            Email='t-hamaguchi@test.co.jp',
+            Username='t-hamaguchi@test.co.jp',
+            CommunityNickname='t-hamaguchi',
+            emailencodingkey='UTF-8',
+            Languagelocalekey='en_US',
+            Localesidkey='en_US',
+            timezonesidkey='America/Los_Angeles',
+            Profileid = cpprofile.Id
+            
+        );
+        insert user;
+        
+        // 部門データ登録
+        Branch__c branch = new Branch__c(
+            Name='テスト部門',
+            manager__c=UserInfo.getUserId()
+        );
+        insert branch;
+        
+        // 取引先作成
+        Account account = new Account(Name='取引先名');
         insert account;
-        
-        //案件データ登録
-		Projects__c projects = new Projects__c(Name='案件Ａ', Suppliers__c=account.Id);
-        insert projects;
-        
-        //部門データ登録
-        division__c division = new division__c(Name='部門Ａ');
-        insert division;
+
+        //案件作成
+        Projects__c project = new Projects__c(
+            Name='案件名',
+            Suppliers__c=account.Id
+        );
+        insert project;
         
         // 商談データ登録
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
             CloseDate=system.today(),
-            branch__c=division.Id,
-            Projects_name__c=projects.Id
+            branch__c=branch.Id,
+            Projects_name__c=project.Id
         );
-        insert opportunity;
+        insert opportunity;     
+        
         
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c=division.Id, isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c=division.Id, isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c=division.Id, isActive = true);
-        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c=division.Id, isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', isActive = true, branch__c=branch.Id);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', isActive = true, branch__c=branch.Id);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', isActive = true, branch__c=branch.Id);
+        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', isActive = true, branch__c=branch.Id);
         insert productA;
         insert productB;
         insert productC;
@@ -193,7 +244,7 @@ private class  SalesAnalyticsControllerTest {
         insert opportunityLineItemG;
         
         // 売上分析データ登録
-        PredictedValue__c salesForcaxtA = new PredictedValue__c(opportunity_ref__c = opportunity.Id, uriageNengetsu__c = Date.valueOf('2016-07-01'), type__c = '予測');
+        PredictedValue__c salesForcaxtA = new PredictedValue__c(opportunity_ref__c = opportunity.Id, uriageNengetsu__c = Date.valueOf('2016-07-01'), type__c = '予測', branch_ref__c = branch.Id);
         insert salesForcaxtA;
 
         // 標準コントローラを生成
@@ -254,33 +305,59 @@ private class  SalesAnalyticsControllerTest {
         // ---------テストスタート--------------
         Test.startTest();   
         
-        //取引先データ登録
-		Account account = new Account(Name='取引先Ａ');
+        // プロファイル取得
+        Profile cpprofile = [Select Id FROM Profile  Limit 1];
+        
+        // ユーザデータ登録
+        User user = new User(
+            LastName='taro',
+            Alias='濱口太郎',
+            Email='t-hamaguchi@test.co.jp',
+            Username='t-hamaguchi@test.co.jp',
+            CommunityNickname='t-hamaguchi',
+            emailencodingkey='UTF-8',
+            Languagelocalekey='en_US',
+            Localesidkey='en_US',
+            timezonesidkey='America/Los_Angeles',
+            Profileid = cpprofile.Id
+            
+        );
+        insert user;
+        
+        // 部門データ登録
+        Branch__c branch = new Branch__c(
+            Name='テスト部門',
+            manager__c=UserInfo.getUserId()
+        );
+        insert branch;
+        
+        // 取引先作成
+        Account account = new Account(Name='取引先名');
         insert account;
-        
-        //案件データ登録
-		Projects__c projects = new Projects__c(Name='案件Ａ', Suppliers__c=account.Id);
-        insert projects;
-        
-        //部門データ登録
-        division__c division = new division__c(Name='部門Ａ');
-        insert division;
+
+        //案件作成
+        Projects__c project = new Projects__c(
+            Name='案件名',
+            Suppliers__c=account.Id
+        );
+        insert project;
         
         // 商談データ登録
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
             CloseDate=system.today(),
-            branch__c=division.Id,
-            Projects_name__c=projects.Id
+            branch__c=branch.Id,
+            Projects_name__c=project.Id
         );
         insert opportunity;
+
         
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c=division.Id, isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c=division.Id, isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c=division.Id, isActive = true);
-        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', branch__c=division.Id, isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', isActive = true, branch__c=branch.Id);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', isActive = true, branch__c=branch.Id);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', isActive = true, branch__c=branch.Id);
+        Product2 productD = new Product2(Name = 'その他Ｄ', ProductCode = '99', isActive = true, branch__c=branch.Id);
         insert productA;
         insert productB;
         insert productC;
@@ -314,9 +391,9 @@ private class  SalesAnalyticsControllerTest {
         insert opportunityLineItemG;
 
         // 売上分析データ登録
-        PredictedValue__c salesForcaxtA = new PredictedValue__c(opportunity_ref__c = opportunity.Id, uriageNengetsu__c = Date.valueOf('2016-07-01'), type__c = '予測');
-        PredictedValue__c salesForcaxtB = new PredictedValue__c(opportunity_ref__c = opportunity.Id, uriageNengetsu__c = Date.valueOf('2016-08-01'), type__c = '予測');
-        PredictedValue__c salesForcaxtC = new PredictedValue__c(opportunity_ref__c = opportunity.Id, uriageNengetsu__c = Date.valueOf('2016-09-01'), type__c = '予測');
+        PredictedValue__c salesForcaxtA = new PredictedValue__c(opportunity_ref__c = opportunity.Id, uriageNengetsu__c = Date.valueOf('2016-07-01'), type__c = '予測', branch_ref__c = branch.Id);
+        PredictedValue__c salesForcaxtB = new PredictedValue__c(opportunity_ref__c = opportunity.Id, uriageNengetsu__c = Date.valueOf('2016-08-01'), type__c = '予測', branch_ref__c = branch.Id);
+        PredictedValue__c salesForcaxtC = new PredictedValue__c(opportunity_ref__c = opportunity.Id, uriageNengetsu__c = Date.valueOf('2016-09-01'), type__c = '予測', branch_ref__c = branch.Id);
         insert salesForcaxtA;
         insert salesForcaxtB;
         insert salesForcaxtC;
@@ -379,32 +456,57 @@ private class  SalesAnalyticsControllerTest {
         // ---------テストスタート--------------
         Test.startTest();   
         
-        //取引先データ登録
-		Account account = new Account(Name='取引先Ａ');
+        // プロファイル取得
+        Profile cpprofile = [Select Id FROM Profile  Limit 1];
+        
+        // ユーザデータ登録
+        User user = new User(
+            LastName='taro',
+            Alias='濱口太郎',
+            Email='t-hamaguchi@test.co.jp',
+            Username='t-hamaguchi@test.co.jp',
+            CommunityNickname='t-hamaguchi',
+            emailencodingkey='UTF-8',
+            Languagelocalekey='en_US',
+            Localesidkey='en_US',
+            timezonesidkey='America/Los_Angeles',
+            Profileid = cpprofile.Id
+            
+        );
+        insert user;
+        
+        // 部門データ登録
+        Branch__c branch = new Branch__c(
+            Name='テスト部門',
+            manager__c=UserInfo.getUserId()
+        );
+        insert branch;
+        
+        // 取引先作成
+        Account account = new Account(Name='取引先名');
         insert account;
-        
-        //案件データ登録
-		Projects__c projects = new Projects__c(Name='案件Ａ', Suppliers__c=account.Id);
-        insert projects;
-        
-        //部門データ登録
-        division__c division = new division__c(Name='部門Ａ');
-        insert division;
+
+        //案件作成
+        Projects__c project = new Projects__c(
+            Name='案件名',
+            Suppliers__c=account.Id
+        );
+        insert project;
         
         // 商談データ登録
         Opportunity opportunity = new Opportunity(
             Name='商談Ａ',
             StageName='見積作成',
             CloseDate=system.today(),
-            branch__c=division.Id,
-            Projects_name__c=projects.Id
+            branch__c=branch.Id,
+            Projects_name__c=project.Id
         );
         insert opportunity;
 
         // 商品データ登録
-        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', branch__c=division.Id, isActive = true);
-        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', branch__c=division.Id, isActive = true);
-        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', branch__c=division.Id, isActive = true);
+        Product2 productA = new Product2(Name = '社員Ａ', ProductCode = '01', isActive = true, branch__c=branch.Id);
+        Product2 productB = new Product2(Name = '社員Ｂ', ProductCode = '01', isActive = true, branch__c=branch.Id);
+        Product2 productC = new Product2(Name = '外注Ｃ', ProductCode = '02', isActive = true, branch__c=branch.Id);
         insert productA;
         insert productB;
         insert productC;
@@ -433,8 +535,8 @@ private class  SalesAnalyticsControllerTest {
         SalesAnalyticsController salesAnalyticsController = new SalesAnalyticsController(stdController);
 
         // 売上分析データ登録
-        PredictedValue__c salesForecastA = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '予測', uriageNengetsu__c = Date.valueOf('2016-07-01'), common_sales_proper_stacked__c = 100);
-        PredictedValue__c salesForecastB = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '予測', uriageNengetsu__c = Date.valueOf('2016-07-01'), sales_prediction_proper_stacked__c = 200);
+        PredictedValue__c salesForecastA = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '予測', uriageNengetsu__c = Date.valueOf('2016-07-01'), common_sales_proper_stacked__c = 100, branch_ref__c=branch.Id);
+        PredictedValue__c salesForecastB = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '予測', uriageNengetsu__c = Date.valueOf('2016-07-01'), sales_prediction_proper_stacked__c = 200, branch_ref__c=branch.Id);
         PredictedValue__c salesForecastC = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '予測', uriageNengetsu__c = Date.valueOf('2016-08-01'));
         PredictedValue__c salesForecastD = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '予測', uriageNengetsu__c = Date.valueOf('2016-09-01'));
         insert salesForecastA;
@@ -443,8 +545,8 @@ private class  SalesAnalyticsControllerTest {
         salesForecastMap.put('2016/08', salesForecastC);
         salesForecastMap.put('2016/09', salesForecastD);
 
-        PredictedValue__c salesPerformanceA = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-07-01'), common_sales_proper_stacked__c = 100);
-        PredictedValue__c salesPerformanceB = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-07-01'), common_sales_proper_stacked__c = 200);
+        PredictedValue__c salesPerformanceA = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-07-01'), common_sales_proper_stacked__c = 100, branch_ref__c=branch.Id);
+        PredictedValue__c salesPerformanceB = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-07-01'), common_sales_proper_stacked__c = 200, branch_ref__c=branch.Id);
         PredictedValue__c salesPerformanceC = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-08-01'));
         PredictedValue__c salesPerformanceD = new PredictedValue__c(opportunity_ref__c = opportunity.Id, type__c = '実績', uriageNengetsu__c = Date.valueOf('2016-09-01'));
         insert salesPerformanceA;
