@@ -250,9 +250,9 @@ public with sharing class SalesAnalyticsController {
             SELECT Id
                  , Name
                  , Account.Name
+                 , Projects_name__r.Name
                  , contract_style__c
                  , branch__c
-                 , Projects_name__r.Name
               FROM Opportunity
              WHERE Id = :opportunityId
              LIMIT 1
